@@ -1,1 +1,4 @@
-console.log(1+3)
+import Slider from './components/Slider'
+import './scss/index.scss'
+
+new Slider()
