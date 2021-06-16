@@ -8,12 +8,12 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
+const filename = (ext) => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
 module.exports = {
   context: path.resolve('src'),
   mode: 'development',
-  entry: './index.js',
+  entry: ['@babel/polyfill', './index.js'],
   output: {
     filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.js']
   },
   devtool: isDev ? 'source-map' : false,
-  target: isDev ? 'web' : 'browser-list',
-  devSerever: {
+  target: isDev ? 'web' : 'browserslist',
+  devServer: {
     port: 4000,
     open: isDev,
     hot: isDev
@@ -40,14 +40,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/favicon.ico'),
-          to: path.resolve(__dirname, 'dist')
-        },
-        {
-          from: path.resolve(__dirname, 'src/img/*.**'),
-          to: ({context, absoluteFilename }) => {
-            return 'dest/src/[name][ext]'
-          }
+          from: path.resolve(__dirname, 'src/img/**/*'),
+          to: '[path][name][ext]'
         }
       ]
     }),
