@@ -14,6 +14,46 @@
   left: -100%;
 }
 
+.active {
+  left: 0;
+}
+
+.next-right {
+  animation: toLeftIn 1s;
+}
+
+.next-left {
+  animation: toRightIn 1s;
+}
+
+.current-right {
+  animation: toRightOut 1s;
+}
+
+.current-left {
+  animation: toLeftOut 1s;
+}
+
+@keyframes toLeftOut {
+  from {left: 0}
+  to {left: 100%}
+}
+
+@keyframes toLeftIn {
+  from {left: 100%}
+  to {left: 0}
+}
+
+@keyframes toRightOut {
+  from {left: 0}
+  to {left: -100%}
+}
+
+@keyframes toRightIn {
+  from {left: -100%}
+  to {left: 0}
+}
+
 .slider {
   display: flex;
   position: relative;
@@ -52,9 +92,9 @@
     background: rgb(160, 160, 160);
     border-radius: 1rem;
     transition: 1s background;
-    &:hover {
-      background: rgb(56, 56, 56);
-    }
+  }
+  .hover {
+    background: rgb(56, 56, 56);
   }
   .top.left {
     left: 0;
@@ -74,10 +114,32 @@
     left: 0;
     transform: rotate(-45deg);
   }
-  .active {
-    left: 0;
-  }
-  .animated {
-    transition: left 1s;
+  .dots {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    .dot {
+      width: 20px;
+      height: 20px;
+      background:#a0a0a0;
+      border-radius: 100%;
+      border: 3px solid black;
+      margin-right: 1rem;
+      box-shadow: 0px 0px 10px 16px rgba(255, 255, 255, 0.5) inset;
+      transition: all 1s;
+      &:hover {
+        background:rgb(56, 56, 56);
+      }
+    }
+    .active {
+      border: unset;
+      box-shadow: 0px 0px 3px 3px rgba(39, 95, 139, 0.6);
+      background: rgb(29, 87, 163)
+    }
   }
 }

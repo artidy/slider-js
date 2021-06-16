@@ -21,6 +21,10 @@ export default class SliderComponent {
     this.element.classList.remove(className)
   }
 
+  toggleClass(className) {
+    this.element.classList.toggle(className)
+  }
+
   containsClass(className) {
     this.element.classList.contains(className)
   }
